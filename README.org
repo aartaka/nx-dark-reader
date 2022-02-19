@@ -1,0 +1,36 @@
+#+TITLE:Dark Reader in Nyxt!
+
+This integrates the code behind the [[https://github.com/darkreader/darkreader][Dark Reader]] Chrome/Firefox extension with Nyxt.
+
+* Getting Started
+First, clone this repository:
+#+begin_src sh
+  # ~/.local/share/nyxt/extensions/nx-dark-reader is the extensions path.
+  # Change if you set it to a different value.
+  git clone https://github.com/aartaka/nx-dark-reader.git ~/.local/share/nyxt/extensions/nx-dark-reader
+#+end_src
+
+Then load it in your init file and add it to your =default-modes=:
+
+#+begin_src lisp
+  ;;; ~/.config/nyxt/init.lisp
+  (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
+
+  ;; Make sure that nx-dark-reader is cloned in the right location,
+  ;; otherwise this will fail with... undesireable consequences :)
+  (define-configuration web-buffer
+    ((default-modes `(nx-dark-reader:dark-reader-mode ,@%slot-default%))))
+#+end_src
+
+Optionally, configure it in the =dark-reader.lisp= (create if necessary).
+
+#+begin_src lisp
+  ;;; ~/.config/nyxt/dark-reader.lisp
+  (define-configuration nx-dark-reader:dark-reader-mode
+    ;; Note the nxdr: short package prefix. It's for your convenience :)
+    ((nxdr:brightness 80)
+     (nxdr:contrast 60)
+     (nxdr:text-color "white")))
+#+end_src
+
+And you're all set! Enjoy your Dark Reader theme :)
