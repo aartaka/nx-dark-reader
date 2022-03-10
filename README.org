@@ -3,6 +3,8 @@
 This integrates the code behind the [[https://github.com/darkreader/darkreader][Dark Reader]] Chrome/Firefox extension with Nyxt.
 
 * Getting Started
+BEWARE: it doesn't work on Nyxt 2.*, as the APIs used belong to the 3.0 release and are only available on current master.
+
 First, clone this repository:
 #+begin_src sh
   # ~/.local/share/nyxt/extensions/nx-dark-reader is the extensions path.
