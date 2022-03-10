@@ -44,7 +44,7 @@ see Dark Reader docs and examples. The default values are mostly sensible, thoug
     nil
     :type (or null string))
    (destructor (lambda (mode)
-                 (ffi-buffer-remove-user-script (buffer mode) (script mode))))
+                 (nyxt::ffi-buffer-remove-user-script (buffer mode) (script mode))))
    (constructor (lambda (mode)
                   (unless (uiop:file-exists-p (nyxt-init-file "darkreader.min.js"))
                     (alexandria:write-string-into-file
@@ -58,7 +58,7 @@ see Dark Reader docs and examples. The default values are mostly sensible, thoug
                       mode
                     (setf
                      (script mode)
-                     (ffi-buffer-add-user-script
+                     (nyxt::ffi-buffer-add-user-script
                       (buffer mode)
                       (str:concat (uiop:read-file-string
                                    (nyxt-init-file "darkreader.min.js"))
