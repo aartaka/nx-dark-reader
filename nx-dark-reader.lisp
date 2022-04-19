@@ -63,6 +63,7 @@ see Dark Reader docs and examples. The default values are mostly sensible, thoug
                       (str:concat (uiop:read-file-string
                                    (nyxt-init-file "darkreader.min.js"))
                                   (format nil "
+DarkReader.setFetchMethod(window.fetch);
 DarkReader.enable({
 	brightness: ~d,
 	contrast: ~d,
