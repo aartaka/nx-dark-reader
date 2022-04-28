@@ -2,7 +2,7 @@
 
 (in-package #:nx-dark-reader)
 
-(define-mode dark-reader-mode ()
+(nyxt::define-mode dark-reader-mode ()
   "A mode to load Dark Reader script and run it on the page.
 
 For the explanation of `brightness', `contrast', `grayscale', `sepia', `background-color',
