@@ -1,5 +1,5 @@
 ;;;; package.lisp
 
-(defpackage #:nx-dark-reader
+(nyxt:define-package #:nx-dark-reader
   (:nicknames #:nxdr)
   (:use #:cl #:nyxt))
