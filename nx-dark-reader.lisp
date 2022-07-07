@@ -2,7 +2,7 @@
 
 (in-package #:nx-dark-reader)
 
-(nyxt::define-mode dark-reader-mode (nyxt/user-script-mode:user-script-mode)
+(nyxt::define-mode dark-reader-mode ()
   "A mode to load Dark Reader script and run it on the page.
 
 For the explanation of `brightness', `contrast', `grayscale', `sepia', `background-color',
@@ -48,13 +48,12 @@ see Dark Reader docs and examples. The default values are mostly sensible, thoug
   (let ((dark-reader
           (make-instance
            'nyxt/user-script-mode:user-script
-           :base-path #p"darkreader.user.js"))
-        (script-text (with-slots (brightness contrast grayscale sepia
-                                  background-color text-color selection-color
-                                  use-font font-family text-stroke
-                                  stylesheet)
-                         mode
-                       (format nil "// ==UserScript==
+           :code (with-slots (brightness contrast grayscale sepia
+                              background-color text-color selection-color
+                              use-font font-family text-stroke
+                              stylesheet)
+                     mode
+                   (format nil "// ==UserScript==
 // @name          Dark Reader (Unofficial)
 // @icon          https://darkreader.org/images/darkreader-icon-256x256.png
 // @namespace     DarkReader
@@ -88,10 +87,8 @@ text-color text-color
 selection-color selection-color
 use-font font-family
 text-stroke text-stroke
-stylesheet stylesheet))))
-    (bt:join-thread (setf (nfiles:content dark-reader) script-text))
-    (push dark-reader (nyxt/user-script-mode:user-scripts mode)))
-  (call-next-method))
+stylesheet stylesheet)))))
+    (ffi-buffer-add-user-script (buffer mode) (setf (script mode) dark-reader))))
 
 (defmethod disable ((mode dark-reader-mode) &key)
-  (ffi-buffer-remove-user-script (buffer mode) (script mode)))
+  (ffi-buffer-remove-user-script (buffer mode) (setf (script mode) dark-reader)))
