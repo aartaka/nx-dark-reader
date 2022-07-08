@@ -91,4 +91,4 @@ stylesheet stylesheet)))))
     (ffi-buffer-add-user-script (buffer mode) (setf (script mode) dark-reader))))
 
 (defmethod disable ((mode dark-reader-mode) &key)
-  (ffi-buffer-remove-user-script (buffer mode) (setf (script mode) dark-reader)))
+  (ffi-buffer-remove-user-script (buffer mode) (script mode)))
