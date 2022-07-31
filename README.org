@@ -16,12 +16,8 @@ Then load it in your init file and add it to your =default-modes=:
 
 #+begin_src lisp
   ;;; ~/.config/nyxt/init.lisp
-  (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
-
-  ;; Make sure that nx-dark-reader is cloned in the right location,
-  ;; otherwise this will fail with... undesireable consequences :)
-  (define-configuration web-buffer
-    ((default-modes `(nx-dark-reader:dark-reader-mode ,@%slot-default%))))
+  (define-nyxt-user-system-and-load "nyxt-user/dark-reader"
+    :depends-on (:nx-dark-reader) :components ("dark-reader.lisp"))
 #+end_src
 
 Optionally, configure it in the =dark-reader.lisp= (create if necessary).
@@ -33,6 +29,10 @@ Optionally, configure it in the =dark-reader.lisp= (create if necessary).
     ((nxdr:brightness 80)
      (nxdr:contrast 60)
      (nxdr:text-color "white")))
+
+
+  (define-configuration web-buffer
+    ((default-modes `(nxdr:dark-reader-mode ,@%slot-value%))))
 #+end_src
 
 And you're all set! Enjoy your Dark Reader theme :)
