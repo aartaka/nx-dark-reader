@@ -15,7 +15,7 @@ First, clone this repository:
 Then load it in your init file and add it to your =default-modes=:
 
 #+begin_src lisp
-  ;;; ~/.config/nyxt/init.lisp
+  ;;; ~/.config/nyxt/config.lisp
   (define-nyxt-user-system-and-load "nyxt-user/dark-reader"
     :depends-on (:nx-dark-reader) :components ("dark-reader.lisp"))
 #+end_src
