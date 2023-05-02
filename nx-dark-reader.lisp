@@ -47,7 +47,10 @@ see Dark Reader docs and examples. The default values are mostly sensible, thoug
 (defmethod enable ((mode dark-reader-mode) &key)
   (let ((dark-reader
           (make-instance
+           #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
            'nyxt/user-script-mode:user-script
+           #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+           'nyxt/mode/user-script:user-script
            :code (with-slots (brightness contrast grayscale sepia
                               background-color text-color selection-color
                               use-font font-family text-stroke
