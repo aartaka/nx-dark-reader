@@ -17,7 +17,9 @@ Then load it in your init file:
 #+begin_src lisp
   ;;; ~/.config/nyxt/config.lisp
   (define-nyxt-user-system-and-load "nyxt-user/dark-reader"
-    :depends-on (:nx-dark-reader) :components ("dark-reader.lisp"))
+    ;; Remove this line if you don't need the file.
+    :components ("dark-reader.lisp")
+    :depends-on (:nx-dark-reader))
 #+end_src
 
 Optionally, configure it and add it to your =default-modes= in =dark-reader.lisp= (create the file if necessary).
